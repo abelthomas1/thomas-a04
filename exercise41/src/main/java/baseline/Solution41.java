@@ -36,7 +36,10 @@ public class Solution41 {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner inputFile = new Scanner(new File("java/exercise41_input.txt"));
+
+        ClassLoader classLoader = Solution41.class.getClassLoader();
+
+        Scanner inputFile = new Scanner(new File(classLoader.getResource("exercise41_input.txt").getFile()));
         ArrayList<String> names = new ArrayList<String>();
 
         readNames(inputFile, names);
