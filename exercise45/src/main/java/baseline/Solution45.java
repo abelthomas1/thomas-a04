@@ -5,8 +5,14 @@
 
 package baseline;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Solution45 {
-    public static void main(String[] args){
+
+    public static void main(String[] args) throws IOException {
 
         /*
         read input file given
@@ -14,5 +20,35 @@ public class Solution45 {
         output the modified file
          */
 
+        ClassLoader classLoader = Solution45.class.getClassLoader();
+
+        File file = new File(classLoader.getResource("exercise45_input.txt").getFile());
+        Scanner sc = new Scanner(file);
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.print("\nEnter the name of Output File : ");
+
+        String outputfile = s.next();
+
+        FileWriter writer = new FileWriter(outputfile);
+
+        try
+        {
+            while( sc.hasNext() )
+            {
+                String user = sc.nextLine();
+                user = user.replaceAll("utilize", "use");
+                writer.write(user);
+
+                writer.write("\n");
+            }
+        }
+        finally
+        {
+            sc.close();
+        }
+        writer.close();
+        System.out.println("\nSuccessfully Modified!!");
     }
 }
